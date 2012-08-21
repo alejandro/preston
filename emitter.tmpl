@@ -1,0 +1,9 @@
+<script type="text/javascript">
+    var sio = window.ws = io.connect('/broadcast')
+    window.Master = true;
+    sio.on('connect', function () {
+      window.WSData = { token: "{{token}}", username: "{{username}}"}
+      sio.emit('register', WSData)
+      if (window.rs) rs.disconnect()
+    });
+</script>
