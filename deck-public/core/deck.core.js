@@ -476,9 +476,9 @@ that use the API provided by core.
 
 		if (!pass() || pass() == undefined) {
 			if (!window.rs) return setTimeout(addListener, 500);
-		    console.log('listener on position');
+		    console.log('Suscribed to broadcaster');
 			rs.on('cslide', function(data){
-				console.log(data)
+				console.log("Switching slide to->", data.cslide)
 				// Check if we are in the same deck as the emitter
 				if (data.path == window.location.pathname) {
 					current = data.cslide;
@@ -487,6 +487,7 @@ that use the API provided by core.
 			})
 		}
 	}
+	/* Ugly hack */
 	window.forceUpdate = function (slide, path) {
 		current = slide
 		// Delay the update
