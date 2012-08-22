@@ -1,0 +1,26 @@
+{
+  "name": "preston",
+  "version": "0.0.0",
+  "description": "My presentations repoo",
+  "main": "server.js",
+  "dependencies": {
+    "nhouston": "~2.0.1",
+    "socket.io": "~0.9.6"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "npm test",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/alejandromg/preston.git"
+  },
+  "keywords": [
+    "preston",
+    "socket.io",
+    "realtime"
+  ],
+  "author": "Alejandro Morales",
+  "license": "BSD"
+}
