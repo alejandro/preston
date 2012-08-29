@@ -73,16 +73,7 @@ that use the API provided by core.
 		osc = options.selectors.container,
 		old = $container.data('onSlide'),
 		$all = $();
-		try {
-			WSData = WSData || {}
-		}  catch (exc) { WSData = {}}
-		if (window.ws || WSData.token) ws.emit('cslide', { 
-			cslide: current,
-			active: window.location.hash,
-			path: '/' + window.location.pathname.split('/').filter(Boolean)[0],
-			time: +new Date,
-			auth: WSData
-		});
+		current = current;
 		// Container state
 		$container.removeClass(oc.onPrefix + old)
 			.addClass(oc.onPrefix + current)
@@ -90,7 +81,7 @@ that use the API provided by core.
 		
 		// Remove and re-add child-current classes for nesting
 		$('.' + oc.current).parentsUntil(osc).removeClass(oc.childCurrent);
-		slides[current].parentsUntil(osc).addClass(oc.childCurrent);
+		slides[current].parentsUntil(osc).addClass(oc.childCurrent);		
 		
 		// Remove previous states
 		$.each(slides, function(i, el) {
@@ -106,6 +97,7 @@ that use the API provided by core.
 		
 		// Add new states back in
 		slides[current].addClass(oc.current);
+
 		if (current > 0) {
 			slides[current-1].addClass(oc.previous);
 		}
@@ -302,7 +294,6 @@ that use the API provided by core.
 		next: function() {
 			methods.go(current+1);
 		},
-		
 		/*
 		jQuery.deck('prev')
 		
@@ -471,32 +462,7 @@ that use the API provided by core.
 			swipeTolerance: 60
 		}
 	};
-	var pass = function() { return window.WSData && window.WSData.token }
-	function addListener (){
 
-		if (!pass() || pass() == undefined) {
-			if (!window.rs) return setTimeout(addListener, 500);
-		    console.log('Suscribed to broadcaster');
-			rs.on('cslide', function(data){
-				console.log("Switching slide to->", data.cslide)
-				// Check if we are in the same deck as the emitter
-				if (data.path == window.location.pathname) {
-					current = data.cslide;
-					updateStates();	
-				}
-			})
-		}
-	}
-	/* Ugly hack */
-	window.forceUpdate = function (slide, path) {
-		current = slide
-		// Delay the update
-		if (path == window.location.pathname) setTimeout(updateStates, 500);
-	}
-
-	if (window.rs && !pass()) {
-		addListener()
-	} else { setTimeout(addListener, 500) }
 	$d.ready(function() {
 		$('html').addClass('ready');
 	});

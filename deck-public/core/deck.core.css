@@ -402,3 +402,6 @@ body.deck-container {
     display: none;
   }
 }
+.deck-container footer.notes {
+  display:none;
+}

@@ -20,7 +20,6 @@ This module adds clickable previous and next links to the deck.
 		nextSlide = $[deck]('getSlide', to + 1),
 		prevId = prevSlide ? prevSlide.attr('id') : undefined;
 		nextId = nextSlide ? nextSlide.attr('id') : undefined;
-		
 		$(opts.selectors.previousLink)
 			.toggleClass(opts.classes.navDisabled, !to)
 			.attr('href', '#' + (prevId ? prevId : ''));
